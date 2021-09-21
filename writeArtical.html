@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html style="font-size: 16px;">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="page_type" content="np-template-header-footer-from-plugin">
+    <title>Write Your Artical</title>
+    <link rel="stylesheet" href="nicepage.css" media="screen">
+<link rel="stylesheet" href="writeArtical.css" media="screen">
+    <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
+    <meta name="generator" content="Nicepage 3.25.0, nicepage.com">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
+    
+    <!--Firebase config-->
+    <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-analytics.js"></script>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+    <meta name="theme-color" content="#478ac9">
+    <meta property="og:title" content="Page 1">
+    <meta property="og:type" content="website">
+
+  </head>
+
+  <body class="u-body">
+    <!--Start of header section-->
+    <header class="u-clearfix u-header u-header" id="sec-7ff8"><div class="u-clearfix u-sheet u-sheet-1">
+        <a href="index.html" class="u-image u-logo u-image-1" data-image-width="798" data-image-height="198">
+          <img src="images/logo.png" class="u-logo-image u-logo-image-1">
+        </a>
+      </div>
+    </header>
+    <!--End of header section-->
+
+    <!--Start of form section-->
+    <section class="u-align-center u-clearfix u-section-1" id="sec-214a">
+      <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
+        <div class="u-form u-form-1">
+          <h1 style="text-align: left; font-size: 35px; margin-left: 0.2em; font-family:'Times New Roman', Times, serif" class=" u-input u-input-rectangle u-white" >Write your Articsl </h1>
+          <div class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" style="padding: 10px" source="custom" name="form">
+            <!--Writer's name-->
+            <div class="u-form-group u-form-name">
+              <input type="text" placeholder="Enter your Name" id="name-3b9a" name="name" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required">
+            </div>
+            <!--Writer's email-->
+            <div class="u-form-email u-form-group">
+              <input type="email" placeholder="Enter a valid email address" id="email-3b9a" name="email" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required">
+            </div>
+            <!--artical title-->
+            <div class="u-form-email u-form-group">
+              <input type="text" placeholder="add your qrtical title" id="title-3b9a" name="title" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required">
+            </div>
+            
+            <!--artical content-->
+            <div class="u-form-group u-form-message">
+              <textarea placeholder="Enter your artical " rows="4" cols="50" id="message-3b9a" name="message" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required"></textarea>
+            </div>
+            <div class="u-align-left u-form-group u-form-submit">
+              <button href="#" class="u-btn u-btn-submit u-button-style" id="publish">Publish<br>
+              </button>
+            </div>
+           
+          </div>
+        </div>
+      </div>
+    </section>
+        <!--End of form section-->
+
+
+
+    
+    <!--Footer-->
+    <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-0e13"><div class="u-clearfix u-sheet u-sheet-1">
+      <p class="u-small-text u-text u-text-variant u-text-1">Connect us for more information: raghad-bajhlan@hotmail.com</p>
+    </div>
+  </footer>
+
+      <script type="module">
+ 
+
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+        apiKey: "AIzaSyBzJ-WRsiVx4ENTxESs9OnrqQiQdpEj_LQ",
+        authDomain: "ragh-s-news-assignment.firebaseapp.com",
+        projectId: "ragh-s-news-assignment",
+        storageBucket: "ragh-s-news-assignment.appspot.com",
+        messagingSenderId: "318109101433",
+        appId: "1:318109101433:web:82d7acf418fc9f91d893a8",
+        measurementId: "G-DJBB5XDL60"
+      };
+
+      firebase.initializeApp(firebaseConfig);
+		   firebase.analytics();
+    
+     
+
+    $('#publish').click(function() {//if publish button clicked 
+      //save the entred info in variables 
+      var writerName = document.getElementById('name-3b9a').value;
+      var writerEmail = document.getElementById('email-3b9a').value;
+      var aticlTitle = document.getElementById('title-3b9a').value;
+      var aticalContent = document.getElementById('message-3b9a').value;
+
+      if(writerName != null && writerEmail != null && aticlTitle != null && aticalContent != null){//check if any input is null or not
+        var pushedRef = firebase.database().ref('artical/').push({//save info to DB
+          writerName: writerName,
+          writerEmail: writerEmail,
+          aticlTitle: aticlTitle,
+          aticalContent: aticalContent
+        },function (err) {
+				if (err) {
+					console.log("there is error" + err)
+				}else{
+          sessionStorage.setItem("id", pushedRef.key)
+        }});
+        waiting(5);// timer for savin the articale in DB
+      }     
+
+
+    });
+
+
+
+    function waiting(second) {//this function will be countdown to sava data in DB
+    console.log(second);
+    var timeleft = second;
+    var downloadTimer = setInterval(function () {
+      if (timeleft <= 0) {
+        clearInterval(downloadTimer);
+        window.location="index.html";//after waiting for data to be saved go back to index.html
+
+      }
+      timeleft -= 1;
+    }, 1000);
+    
+
+  }
+
+  </script>
+  </body>
+</html>
