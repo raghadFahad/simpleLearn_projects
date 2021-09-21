@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html style="font-size: 16px;">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="​Are you a writer?, Latest news">
+    <meta name="description" content="">
+    <meta name="page_type" content="np-template-header-footer-from-plugin">
+    <title>Home</title>
+    <link rel="stylesheet" href="nicepage.css" media="screen">
+    <link rel="stylesheet" href="Home.css" media="screen">
+    <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
+    <meta name="generator" content="Nicepage 3.25.0, nicepage.com">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
+    </script>
+
+    <!--Firebase config-->
+    <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-analytics.js"></script>
+    
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+    <meta name="theme-color" content="#478ac9">
+    <meta property="og:title" content="Home">
+    <meta property="og:type" content="website">
+  </head>
+  <body data-home-page="Home.html" data-home-page-title="Home" class="u-body">
+  
+    <!--Start of header's section-->
+    <header class="u-clearfix u-header u-header" id="sec-7ff8"><div class="u-clearfix u-sheet u-sheet-1">
+        <a href="https://nicepage.com" class="u-image u-logo u-image-1" data-image-width="798" data-image-height="198">
+          <img src="images/logo.png" class="u-logo-image u-logo-image-1">
+        </a>
+      </div>
+    </header>
+    <!--End of header's section-->
+
+    <!--Start of Enjoy-us section -->
+    <section class="u-align-center u-clearfix u-image u-shading u-section-1" src="" data-image-width="1400" data-image-height="933" id="sec-ca47">
+      <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
+        <h1 class="u-text u-text-default u-title u-text-1"> Are you a writer?&nbsp;</h1>
+        <p class="u-large-text u-text u-text-body-color u-text-default u-text-variant u-text-2">Enjoy us and let your hands light up our minds</p>
+        <a href="writeArtical.html" class="u-border-none u-btn u-button-style u-custom-color-1 u-btn-1">Enjoy Us!</a>
+      </div>
+    </section>
+    <!--End of Enjoy-us section -->
+
+    <!--Start of atricals section-->
+    <section class="u-align-center u-clearfix u-grey-5 u-section-2" id="carousel_c09f">
+      <div class="u-clearfix u-sheet u-valign-middle-lg u-valign-middle-md u-valign-middle-sm u-valign-middle-xl u-sheet-1" style="margin-bottom: 5em;">
+        <h2 class="u-text u-text-1" style="font-family: 'Times New Roman', Times, serif; font-size: 50px;"><b>Articales</b></h2>
+        <div class="u-blog u-expanded-width-sm u-expanded-width-xs u-blog-1">
+          <div class="u-repeater u-repeater-1" id="blocks">
+           <!--Here where blocks will be added-->   
+          </div>
+        </div><!--/blog-->
+      </div>
+    </section>
+    
+    <!--Footer-->
+    <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-0e13"><div class="u-clearfix u-sheet u-sheet-1">
+        <p class="u-small-text u-text u-text-variant u-text-1">Sample text. Click to select the text box. Click again or double click to start editing the text.</p>
+      </div>
+    </footer>
+
+    <script type="module">
+      window.onload = function(){
+        getArticals();
+      }
+
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      const firebaseConfig = {
+      apiKey: "AIzaSyBzJ-WRsiVx4ENTxESs9OnrqQiQdpEj_LQ",
+      authDomain: "ragh-s-news-assignment.firebaseapp.com",
+      projectId: "ragh-s-news-assignment",
+      storageBucket: "ragh-s-news-assignment.appspot.com",
+      messagingSenderId: "318109101433",
+      appId: "1:318109101433:web:82d7acf418fc9f91d893a8",
+      measurementId: "G-DJBB5XDL60"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+    var x =0;
+
+    function getArticals(){ //function to get articals' info
+      var id = sessionStorage.getItem("id");
+
+			  firebase.database().ref('artical/').once('value',
+				  function (AllRecords) {
+					  AllRecords.forEach(//get all recored form database
+						  function (currentRecord) {//get records 
+              var  aticlTitle = currentRecord.val().aticlTitle;
+              var  aticalContent = currentRecord.val().aticalContent;
+              var current_id;
+              firebase.database().ref('artical/').on('value',//access to DB record's id (articale's id)
+                  function (snapshot) {
+                      var record = snapshot.val();
+                    if (record) {  //if any record exist
+                      current_id = Object.keys(record)[x];
+                      x++;
+                    //send block's values 
+                    setBlock(current_id,aticlTitle,aticalContent);             
+                    }
+                      
+                    });
+             
+              });
+            
+
+            });
+
+     }
+    function setBlock(currentArticale_id,aticlTitle,aticalContent){//function to build the articales's section in body 
+
+    var blocksBody = document.getElementById('blocks');//access to main div in body
+
+      //build the block
+      var newBlock = document.createElement('div');
+      newBlock.className = "u-align-left u-blog-post u-container-style u-repeater-item u-video-cover u-white u-repeater-item-1";
+      newBlock.id = "newBlock";
+      newBlock.inlineSize="max-content";
+      newBlock.style.height="12em";
+     
+      blocksBody.appendChild(newBlock);// add the block to main div
+
+       //creat the next div 
+       var paragraphBlock = document.createElement('div');
+      paragraphBlock.className= "u-container-layout u-similar-container u-valign-top-sm u-valign-top-xs u-container-layout-1";
+
+      newBlock.appendChild(paragraphBlock);// add the block to the div
+
+
+      //----------------------------------
+
+      //create <a> tag
+      var a_title = document.createElement('a');
+      //set style
+      a_title.innerHTML = aticlTitle;
+      a_title.style.fontFamily = "'Times New Roman', Times, serif";
+      a_title.style.color = "black";
+      a_title.style.fontSize = '25px';
+      a_title.style.paddingLeft = "0.5em";
+      a_title.style.paddingTop = "0.5em";
+      a_title.style.paddingBottom = "0.8em";
+      a_title.style.position = "absolute";
+      //if linked clicked
+      a_title.addEventListener('click',function(){
+        this.style.color = '#FFA07A';
+        sessionStorage.setItem("articale_id",currentArticale_id);
+        window.location = "post.html";
+      });
+
+      newBlock.appendChild(a_title);//add <a> tag to div 
+
+      //----------------------------------
+
+      //create the paragraph
+      var artical_part = document.createElement('p');
+
+      artical_part.innerHTML = aticalContent.substring(0,100)+"...";
+      artical_part.style.fontFamily = "'Times New Roman', Times, serif";
+      artical_part.style.color = "grey";
+      artical_part.style.fontSize = '16px';
+      artical_part.style.paddingLeft = "0.6em";
+      artical_part.style.paddingRight = "0.6em";
+      artical_part.style.marginTop = "4em";
+      artical_part.style.position = "absolute";
+      paragraphBlock.appendChild(artical_part);//add paragraph to paragraphBlock
+
+      
+    }
+
+    
+      x=0;
+
+     </script>
+     <script>
+
+       
+     </script>
+
+  </body>
+</html>
