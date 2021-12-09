@@ -1,0 +1,139 @@
+ <!-- Sign up form -->
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Document</title>
+ </head>
+ <body>
+   
+    <section class="signup">
+        <div class="container">
+            <div class="signup-content">
+                <div class="signup-form">
+                    <h2 class="form-title">Sign up</h2>
+                    <form method="POST"  class="register-form" id="register-form" [formGroup]="signupForm" 
+                    >
+                     
+                        <div class="form-group">
+
+                            <!--Email-->
+                            <label for="email"><i class="zmdi zmdi-email"></i>
+                            </label>
+                            <input type="email" formControlName="email" id="email" placeholder="Your Email" required
+                            [class.valid]="signupForm.get('email').valid && 
+                            (signupForm.get('email').dirty || signupForm.get('email').touched)"
+                            [class.invalid]="signupForm.get('email').invalid && 
+                            (signupForm.get('email').dirty || signupForm.get('email').touched)" />
+
+                            <div *ngIf="signupForm.get('email').invalid && 
+                                        signupForm.get('email').errors && 
+                                        (signupForm.get('email').dirty || signupForm.get('email').touched)">
+                                    <small class="text-danger"
+                                        *ngIf="signupForm.get('email').hasError('required')">
+                                        - Email is required.
+                                    </small>
+                                    <small class="text-danger"
+                                        *ngIf="signupForm.get('email').hasError('maxlength')">
+                                        - The maximum length for this field is {{signupForm.get('email').errors.maxlength.requiredLength}} characters.
+                                    </small>
+                                    <small class="text-danger"
+                                        *ngIf="signupForm.get('email').hasError('email')">
+                                        - Check the email pattern is UNFALID
+                                    </small>
+                            </div>
+                            
+                        </div>
+                        <!--Password-->
+                        <div class="form-group">
+                            <label for="pass"><i class="zmdi zmdi-lock"></i></label>
+                            <input type="password" formControlName="password"  id="pass" placeholder="Password"
+                            [class.valid]="signupForm.get('password').valid && 
+                            (signupForm.get('password').dirty || signupForm.get('password').touched)"
+                            [class.invalid]="signupForm.get('password').invalid && 
+                            (signupForm.get('password').dirty || signupForm.get('password').touched)"/>
+
+                            <div *ngIf="signupForm.get('password').invalid && 
+                            signupForm.get('password').errors && 
+                            (signupForm.get('password').dirty || signupForm.get('password').touched)">
+                                <small class="text-danger"
+                                    *ngIf="signupForm.get('password').hasError('required')">
+                                    - Password is required.
+                                </small><br/>
+                                <small class="text-danger"
+                                    *ngIf="signupForm.get('password').hasError('maxlength')">
+                                    - The minimum length for this field is {{signupForm.get('password').errors.minlength.requiredLength}} characters.
+                                </small>
+                                <small class="text-danger"
+                                    *ngIf="signupForm.get('password').hasError('pattern')">
+                                   - The Password must contains letters and letters
+                                </small>
+                            </div> 
+                        </div>
+                        <!--Conformatio of password-->
+                        <div class="form-group">
+                            <label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label>
+                            <input type="password" formControlName="confirmPassword" id="confirmPassword" placeholder="Repeat your password"
+                            [class.valid]="signupForm.get('confirmPassword').valid && 
+                            (signupForm.get('confirmPassword').dirty || signupForm.get('confirmPassword').touched)"
+                            [class.invalid]="signupForm.get('password').invalid && 
+                            (signupForm.get('confirmPassword').dirty || signupForm.get('confirmPassword').touched)"/>
+
+                            <div *ngIf="signupForm.get('confirmPassword').invalid && 
+                            signupForm.get('confirmPassword').errors && 
+                            (signupForm.get('confirmPassword').dirty || signupForm.get('confirmPassword').touched)">
+                                <small class="text-danger"
+                                    *ngIf="signupForm.get('confirmPassword').hasError('required')">
+                                    - confirmtion of password is required.
+                                </small><br/>
+                                <small class="text-danger" 
+                                 *ngIf="signupForm.get('confirmPassword').hasError('matching')">
+                                    - Password must match.
+                                </small>
+                            </div> 
+                        </div>
+                        <!--Checkbox-->
+                        <div class="form-group">
+                            <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" formControlName="accepted_tearms"/>
+                            <label for="agree-term" class="label-agree-term">
+                                <span><span></span></span>I agree all statements in
+                                  <a href="#" class="term-service">Terms of service</a>
+                            </label>
+                            <div *ngIf="signupForm.get('accepted_tearms').invalid && 
+                            signupForm.get('accepted_tearms').errors && 
+                            (signupForm.get('accepted_tearms').dirty || signupForm.get('accepted_tearms').touched)">
+                                <small class="text-danger"
+                                    *ngIf="signupForm.get('accepted_tearms').hasError('required')">
+                                    Required
+                                </small><br/>
+                                
+                            </div>
+                        </div>
+                        <!--Button-->
+                      
+                        <div class="form-group form-button" >
+                            <button type="submit" id="signup" class="form-submit" 
+                            [disabled]="signupForm.invalid"
+                           (click)="signupUser()">Sign Up</button>
+                            
+                        </div>
+                    </form><br>
+                    <div *ngIf="!userNotSigned">
+                        <p  class="text-danger" >
+                             Email already used!
+                        </p>
+                     </div>
+                </div>
+                <div class="signup-image">
+                    <figure><img src="assets/images/signup-image.jpg" alt="sing up image"></figure>
+                    <a class="signup-image-link" routerLink="/signin"  routerLinkActive ="active">I am already member</a>
+                </div>
+            </div>
+        </div>
+    </section> 
+
+
+ </body>
+ </html>

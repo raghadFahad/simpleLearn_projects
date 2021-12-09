@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Start</title>
+    </head>
+    <body>
+        <!-- Sing in  Form -->
+        <div class="container">
+            <div class="signin-content">
+                <div class="signin-image">
+                    <figure><img src="assets/images/signin-image.jpg" alt="sing up image"></figure> 
+                </div>
+                <div class="signin-form">
+                    <h3 class="form-title"><b>Welcome in Online  application test</b></h3>
+                    <form method="POST" class="register-form" id="login-form"  >
+                        <!--sign up button-->
+                        <div class="form-group form-button">
+                            <a routerLink="/signup">
+                                <button type="submit" name="signup"id="signup" class="form-submit1">
+                                    Create new accont
+                                </button>
+                            </a>
+                            <!--sign in button-->
+                            <a routerLink="/signin">
+                                <button type="submit" name="signin" id="signin" class="form-submit" >
+                                    Log in
+                                </button>
+                            </a>
+                        </div>
+                    </form>                    
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

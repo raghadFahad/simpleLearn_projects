@@ -1,0 +1,17 @@
+{
+    "hosting": [{
+        "target":"online-test-sit",
+        "public":"dist/online-test-sit",
+        "ignor":[
+            "firebase.json",
+            "**/.*",
+            "**/node_modules/**"
+        ],
+        "rewrites": [
+            {
+                "source":"**",
+                "destination":"index.html"
+            }
+        ]
+    }]
+}

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign in</title>
+</head>
+<body>
+     <!-- Sing in  Form -->
+     <section class="sign-in">
+        <div class="container">
+            <div class="signin-content">
+                <div class="signin-image">
+                    <figure><img src="assets/images/signin-image.jpg" alt="sing up image"></figure>
+                    <a routerLinkActive ="active" class="signup-image-link" routerLink="/signup">Create an account</a>
+                </div>
+
+                <div class="signin-form">
+                    <h2 class="form-title">Sign in</h2>
+                    <form method="POST" class="register-form" id="login-form" [formGroup]="signinForm" >
+                        <!--Email-->
+                        <div class="form-group">
+                            <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                            <input type="email" formControlName="email" id="your_name" placeholder="Your Email" 
+                            [class.valid]="signinForm.get('email').valid && 
+                            (signinForm.get('email').dirty || signinForm.get('email').touched)"
+                            [class.invalid]="signinForm.get('email').invalid && 
+                            (signinForm.get('email').dirty || signinForm.get('email').touched)"/>
+
+                            <div *ngIf="signinForm.get('email').invalid && 
+                            signinForm.get('email').errors && 
+                            (signinForm.get('email').dirty || signinForm.get('email').touched)">
+                                <small class="text-danger"
+                                    *ngIf="signinForm.get('email').hasError('required')">
+                                    - Email is required.
+                                </small>
+         
+                             </div>
+                        </div>
+                        <!--Passwoed-->
+                        <div class="form-group">
+                            <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
+                            <input type="password" formControlName="password" id="your_pass" 
+                            [class.valid]="signinForm.get('password').valid && 
+                            (signinForm.get('password').dirty || signinForm.get('password').touched)"
+                            [class.invalid]="signinForm.get('password').invalid && 
+                            (signinForm.get('password').dirty || signinForm.get('password').touched)"/>
+                        </div>
+                        <div class="form-group">
+                            <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />
+                            <div *ngIf="signinForm.get('password').invalid && 
+                            signinForm.get('password').errors && 
+                            (signinForm.get('password').dirty || signinForm.get('password').touched)">
+                                <small class="text-danger"
+                                    *ngIf="signinForm.get('password').hasError('required')">
+                                    - Password is required.
+                                </small><br/>
+                                
+                            </div> 
+                        </div>
+
+                        <!--Wrong fields-->
+                        <div *ngIf="!userNotSigned">
+                            <p  class="text-danger" >
+                                 Email or password is wrong!
+                            </p>
+                        </div>
+                        <!--Button-->
+                        <div class="form-group form-button">
+                            <button type="submit" name="signin" id="signin" class="form-submit"  [disabled]="signinForm.invalid" (click)="signinUser()">Sign in</button>
+                        </div>
+                    </form>
+            
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
