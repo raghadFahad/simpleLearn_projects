@@ -1,0 +1,60 @@
+.body{
+    height: 100%
+
+
+}
+.index-card{
+display: inline-block; 
+ margin-top: 10em;
+  padding: 0;
+
+}
+.start_message{
+    width: 100%;
+    font-family: Georgia, serif;
+    text-align: justify;
+}
+.go-button{
+    font-family: Georgia, serif;
+    width: 40%;
+    margin-top: 2em;
+    background-color: rgb(241, 200, 15);
+    border: rgb(241, 200, 15);
+    font-size: 1.7em;
+    color: black;
+}
+
+
+.header{
+    background-color: white;
+}
+
+#title{
+    font-family: Georgia, serif;
+    font-weight: bold;
+    font-size: 2em;
+    margin-top: 1.3em;
+    margin-bottom: 1.2em;
+}
+#messages{
+    height:10em;
+}
+#chat{
+    margin-bottom: 2em;
+}
+
+.min-body{
+    width: 100%;
+    height: 100%;
+    background-color: rgb(248, 231, 231);
+}
+
+#clear{
+    font-family: Georgia, serif;
+    width: 20%;
+    margin-top: 2em;
+    background-color: rgb(146, 36, 26);
+    border:  rgb(146, 36, 26);
+    font-size: 1.2em;
+    color: white;
+}
