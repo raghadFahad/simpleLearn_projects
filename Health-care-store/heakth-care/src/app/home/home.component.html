@@ -1,0 +1,58 @@
+<!-- Hero Banner-->
+<section class="bg-cover bg-center" [ngStyle]="{'background-image': getUrl()}">
+
+    <div class="container index-forward py-5 mb-5 ">
+      <div class="row text-white">
+        <div class="col-lg-8">
+          <h1 class="text-uppercase mb-0 text-shadow">FRISH MARKET</h1>
+          <h2 class=" my-4 text-shadow">Neatly. Delightedly. Quietly
+          </h2>
+          <h4>We'll deliver everything <h2>YOU NEED</h2></h4>
+          <a class="btn btn-light px-5 view-btn" href="#">View details</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="products">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+      
+        </div>
+        <div class="col-md-12">
+          <div class="filters-content">
+              <div class="row grid">
+                <ng-template ngFor let-item [ngForOf]="this.productsInfo " let-i="index">                         
+                  <div class="col-lg-4 col-md-4 all des">
+                    <div class="product-item">
+                      <img [src]="this.productsInfo[i]['product_i']" alt=""/>
+                      <p>{{this.productsInfo[i]['product_i']}}</p>
+                      <br>
+                      <div class="down-content">
+                        <a href="#"><h4>{{this.productsInfo[i]['product_n']}}</h4></a>
+
+                        <h6>{{this.productsInfo[i]['product_p']}}{{"SR"}}</h6>
+                        <ul class="stars">
+                          <li><i class="fa fa-star"></i></li>
+                          <li><i class="fa fa-star"></i></li>
+                          <li><i class="fa fa-star"></i></li>
+                          <li><i class="fa fa-star"></i></li>
+                          <li><i class="fa fa-star"></i></li>
+                        </ul>
+                        <form (ngSubmit)="addtoCart(this.productsInfo[i]['product_n'],this.productsInfo[i]['product_p'])">
+                        <button  class="btn">Add to Cart</button>
+                      </form>
+
+                        
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+
+              </div>
+          </div>
+        </div>
+      
+      </div>
+    </div>
+  </div>

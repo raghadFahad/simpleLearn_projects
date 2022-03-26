@@ -1,0 +1,42 @@
+<div class="account section">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-6">
+          <div class="login-form border p-5">
+            <div class="text-center heading">
+              <h2 class="mb-2">Login</h2>
+              <p class="lead">Don’t have an account? <a routerLink="/sign-up">Create a free account</a></p>
+            </div>
+            <div *ngIf = '!this.isLogin'>
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+              <div class="form-group mb-4">
+                <label for="#">Enter Emial</label>
+                <input type="text" class="form-control" placeholder="Enter Email" required formControlName="email">
+                <span class="text-danger"
+                *ngIf="(loginForm.get('email').touched || submitted) && loginForm.get('email').errors?.required">
+                - Email is required<br>
+            </span>
+              </div>
+              <div class="form-group" routerLinkActive="active">
+                <label for="#">Enter Password</label>
+                <a class="float-right" routerLink="/forget-password">Forget password?</a>
+                <input type="password" class="form-control" placeholder="Enter Password" required formControlName="password"> 
+                <span class="text-danger"
+                *ngIf="(loginForm.get('password').touched || submitted) && loginForm.get('password').errors?.required">
+                - Password is required<br>
+            </span>
+              </div>
+              <div  *ngIf = 'this.nonUser'>
+                <span class="text-danger">
+                - make sure you write the correct email or password
+            </span>
+              </div>
+
+              <button  class="btn btn-light  px-1 btn-block signBtn">Login</button>
+            </form>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

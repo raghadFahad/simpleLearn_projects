@@ -1,0 +1,23 @@
+<div class="account section">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-6">
+          <div class="login-form border p-5">
+            <div class="text-center heading">
+              <h2 class="mb-2">Log Out</h2>
+            </div>
+            
+            <form (ngSubmit)="logout()">
+             
+              <div class="form-group" routerLinkActive="active">
+                <label class="label">Are sure you want LOG OUT?</label> 
+
+              </div>
+
+              <button  class="btn btn-light  px-1 btn-block outBtn">Log Out</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,112 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-white w-100 navigation" id="navbar">
+  <div class="container">
+    <img src="assets/images/logo.png" class="logo" routerLink="/home"/>
+    <!-- <a class="navbar-brand font-weight-bold" routerLink="/home">Shop</a> -->
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar"
+      aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse " id="main-navbar" >
+      <ul class="navbar-nav mx-auto list-foalt">
+        <li class="nav-item active " routerLinkActive="active">
+          <a class="nav-link" routerLink="/home">Home </a>
+        </li>
+        <!-- Account -->
+        <li class="nav-item dropdown dropdown-slide">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown5" role="button" data-delay="350"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Account
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown5">
+            <li><a routerLink="/order">Your Orders</a></li>
+            <li><a routerLink="/home">Address</a></li>
+            <li><a routerLink="/user-profile">Profile Details</a></li>
+     
+        
+          </ul>
+        </li><!-- / Account -->
+
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" routerLink="/about-us">About Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/contact-us">Contact Us</a>
+        </li>
+      </ul>
+    </div>
+    <!-- Navbar-collapse -->
+
+    <ul class="top-menu list-inline mb-0 d-none d-lg-block" id="top-menu">
+      <li class="list-inline-item">
+        <a href="#" class="search_toggle" id="search-icon"><i class="tf-ion-android-search"></i></a>
+      </li>
+      
+      <!-- <ul class="top-menu list-inline mb-0 d-none d-lg-block" class = 'col-md-4 offset-4 mt-5' style="white-space:nowrap;" id="top-menu"> -->
+      <div  *ngIf = '!this.isLogin'>
+        <li class="list-inline-item"  routerLinkActive="active">
+          <a class="btn btn-light  px-1 signBtn" routerLink="/sign-up">Rigester</a>
+        </li>
+        <li class="list-inline-item" routerLinkActive="active">
+          <a class="btn btn-light  px-1 signBtn" routerLink="/sign-in">Login</a>
+        </li>
+      </div>
+      <div *ngIf = 'this.isLogin'>
+        <li class="list-inline-item icone-container" routerLinkActive="active">
+          <a routerLink="/cart"><img class="icone" src="assets/images/shopping-cart.png"></a>
+        </li>
+
+        <li class="list-inline-item icone-container" routerLinkActive="active">
+          <a routerLink="/user-profile"><img class="icone" src="assets/images/user.png"></a>
+        </li>
+      </div>
+        <!-- </ul> -->
+      <!-- <li class="dropdown cart-nav dropdown-slide list-inline-item">
+        <a href="#" class="dropdown-toggle cart-icon" data-toggle="dropdown" data-hover="dropdown">
+          <i class="tf-ion-android-cart"></i>
+        </a>
+        <div class="dropdown-menu cart-dropdown">
+          <div class="media">
+            <a routerLink="/product-single">
+              <img class="media-object img- mr-3" src="assets/images/cart-1.jpg" alt="image" />
+            </a>
+            <div class="media-body">
+              <h6>Ladies Bag</h6>
+              <div class="cart-price">
+                <span>1 x</span>
+                <span>1250.00</span>
+              </div>
+            </div>
+            <a href="#" class="remove"><i class="tf-ion-close"></i></a>
+          </div>
+
+          <div class="media">
+            <a routerLink="/product-single">
+              <img class="media-object img-fluid mr-3" src="assets/images/cart-2.jpg" alt="image" />
+            </a>
+            <div class="media-body">
+              <h6>Skinny Jeans</h6>
+              <div class="cart-price">
+                <span>1 x</span>
+                <span>1250.00</span>
+              </div>
+            </div>
+            <a href="#" class="remove"><i class="tf-ion-close"></i></a>
+          </div>
+
+          <div class="cart-summary">
+            <span class="h6">Total</span>
+            <span class="total-price h6">$1799.00</span>
+
+            <div class="text-center cart-buttons mt-3">
+              <a routerLink="/cart" class="btn btn-small btn-transparent btn-block">View Cart</a>
+              <a routerLink="/checkout" class="btn btn-small btn-main btn-block">Checkout</a>
+            </div>
+          </div>
+        </div>
+      </li> -->
+      <li class="list-inline-item"><a href="#"><i class="tf-ion-ios-person mr-3"></i></a></li>
+    </ul>
+  </div>
+</nav>

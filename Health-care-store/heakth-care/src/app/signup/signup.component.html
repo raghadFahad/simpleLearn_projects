@@ -1,0 +1,103 @@
+<div class="account section">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-6">
+          <div class="login-form border p-5">
+            <div class="text-center heading">
+              <h2 class="mb-2">Create your account</h2>
+              <p class="lead">Already have an account? <a routerLink="/sign-in"> Login now</a></p>
+            </div><br>
+            <div  *ngIf = 'this.usedEmail'>
+              <span class="text-danger">
+              - This email is used before 
+          </span>
+            </div><br>
+            <div  *ngIf = '!this.isLogin'>
+            <form action="#"  [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+              <!--Email-->
+              <div class="form-group mb-4">
+                <label for="#">Enter Email Address</label>
+                <input type="text" class="form-control" placeholder="Enter Email Address"  formControlName="email">
+                <!--Email validation-->
+                <span class="text-danger"
+                    *ngIf="(signupForm.get('email').touched || submitted) && signupForm.get('email').errors?.required">
+                    - Email is required<br>
+                </span>
+                <span class="text-danger"
+                    *ngIf="signupForm.get('email').touched && signupForm.get('email').errors?.email">
+                    - Enter a valid email address<br>
+                </span>
+               
+              </div>
+              <!--Password-->
+              <div class="form-group mb-4">
+                <label for="#">Enter Password</label>
+                <input type="password" class="form-control" placeholder="Enter Password"  formControlName="password"> 
+                <!--password validation-->
+                <span class="text-danger"
+                *ngIf="(signupForm.get('password').touched || submitted) && signupForm.get('password').errors?.required">
+                - Password is required
+                </span>
+                <span class="text-danger"
+                    *ngIf="signupForm.get('password').touched && signupForm.get('password').errors?.invalidPassword ">
+                    <ul>
+                      <li>Password should have minimum 8 characters.</li>
+                      <li>At least 1 uppercase letter 1 lowercase letter and 1 number</li>
+                    </ul>  
+                </span>
+               </div>
+              
+              <!--Password confirmation-->
+              <div class="form-group">
+                <label for="#">Confirm Password</label>
+                <input type="password" class="form-control" placeholder="Confirm Password"  formControlName="conPassword" > 
+                <span class="text-danger"
+                *ngIf="(signupForm.get('conPassword').touched || submitted)&& signupForm.get('conPassword').errors?.required">
+                - Confirm Password is required <br>
+                </span>
+                <span class="text-danger"
+                    *ngIf="signupForm.get('conPassword').touched && signupForm.get('conPassword').hasError('matching')">
+                    - Passwords doesnot match
+                </span>
+                <!-- <span class="text-danger" 
+                *ngIf="signupForm.get('confirmPassword').hasError('matching')">
+                   - Password must match.
+               </span> -->
+              </div>
+
+              <!--Name-->
+              <div class="form-group mb-4">
+                <label for="#">Enter Name</label>
+                <input type="text" class="form-control" placeholder="Enter Name"  formControlName="name"/> 
+                <!--Name validation-->
+                <span class="text-danger"
+                *ngIf="(signupForm.get('name').touched || submitted) && signupForm.get('name').errors?.required">
+                - Name is required
+                 </span>
+              </div>
+
+              <!--Phone-->
+              <div class="form-group mb-4">
+                <label for="#">Enter Phone</label>
+                <input type="text" class="form-control" placeholder="Enter Phone"  formControlName="phone"> 
+                <span class="text-danger"
+                *ngIf="(signupForm.get('phone').touched || submitted) && signupForm.get('phone').errors?.required">
+                - Phone number is required
+                 </span>
+                 <span class="text-danger"
+                    *ngIf="signupForm.get('phone').touched && signupForm.get('phone').errors?.pattern">
+                    - Enter a valid phone number
+                </span>
+              </div>
+              <button href="#" class="btn btn-light  px-1 btn-block signBtn">Signup</button>
+            </form>
+          </div>
+          <!-- <div class = 'col-md-4 offset-4 mt-5' *ngIf = 'this.isLogin'>
+            <h5>You are logged in</h5>
+        </div> -->
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>

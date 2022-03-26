@@ -1,0 +1,116 @@
+<!-- 
+
+  <section class="user-dashboard page-wrapper">
+    <div class="container">
+      <div class="row">
+         <div class="col-12 col-md-5 col-sm-12 col-lg-3">
+          <div class="nav flex-column nav-pills">
+            <a class="nav-link active" routerLink="/order" >Orders</a>
+          </div>
+          <div class="nav flex-column nav-pills">
+            <a class="nav-link" routerLink="/order" >Address</a>
+          </div>
+          <div class="nav flex-column nav-pills">
+            <a class="nav-link" routerLink="/user-profile" >profile Details</a>
+          </div>
+          <div class="nav flex-column nav-pills">
+            <a class="nav-link"routerLink="/cart" >Cart</a>
+          </div>
+          <div class="nav flex-column nav-pills">
+            <a class="nav-link"routerLink="/log-out" >Log Out</a>
+          </div>
+        </div> 
+        <div class="col-12 col-md-7 col-sm-12 col-lg-9">
+        <div class="container margin">                
+            <div class="contentbar">                 -->
+                <!-- Start row -->
+                <div class="row">
+                    <!-- Start col -->
+                    <div class="col-md-12 col-lg-12 col-xl-12">
+                        <div class="card m-b-30">
+                            <div class="card-header">
+                                <h5 class="card-title">Cart</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row justify-content-center">
+                                    <div class="col-lg-10 col-xl-8">
+                                        <div class="cart-container">
+                                            <div class="cart-head">
+                                                <div class="table-responsive">
+                                                    <table class="table table" style="float: left; margin-bottom: 20px;">
+                                                        <thead>
+                                                            <tr>
+                                                                <th scope="col">#</th>
+                                                                <!-- <th scope="col">Photo</th> -->
+                                                                <th scope="col">Product</th>
+                                                                <th scope="col">Price</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <ng-template ngFor let-item [ngForOf]="this.userCart " let-i="index">                         
+
+                                                        <tbody>
+                                                            
+                                                            <tr>
+                                                                <th scope="row">{{i}}</th>
+                                                                <!-- <td><a href="#" class="text-danger"><i class="ri-delete-bin-3-line"></i></a></td> -->
+                                                                <!-- <td><img src="" class="img-fluid" width="35" alt="product"></td> -->
+                                                                <td style="width:30%">{{this.userCart[i]['name']}}</td>
+                                                               
+                                                                <td>{{this.userCart[i]['price']}}</td>
+                                                           </tr>
+                                                        </tbody>
+                                                    </ng-template>
+                                                    </table>
+                                                 
+                                                </div>
+                                            </div>
+                                            <form action="#"  (ngSubmit)="onSubmit()">
+                                             <div class="cart-body" style="margin-top: 40px;">
+                                                <div class="row">
+                                                    <div class="col-md-12 order-1 order-lg-2 col-lg-7 col-xl-6" >
+                                                        <div class="order-total table-responsive ">
+                                                            <table class="table table text-left">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td>Sub Total :</td>
+                                                                         <td>{{this.cartTotal}} SR</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Shipping :</td>
+                                                                        <td>{{this.shoppingPrice}} SR</td>
+                                                                    </tr>
+                                                                    
+                                                                    <tr>
+                                                                        <td class="f-w-7 font-18"><h4>Amount :</h4></td>
+                                                                        <td class="f-w-7 font-18"><h4>{{this.cartTotal+this.shoppingPrice}} SR</h4></td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div> 
+                                            <div class="cart-footer text-center margin-top">
+
+                                                <button  class="btn btn-info my-1 margin-btn">Proceed to Checkout<i class="ri-arrow-right-line ml-1"></i> </button>
+                                                <!-- <a href="page-checkout.html" class="btn btn-success my-1">Proceed to Checkout<i class="ri-arrow-right-line ml-2"></i></a> -->
+                                            </div>
+                                        </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End col -->
+                </div>
+                    <!-- End row -->
+            <!-- </div>
+            </div>
+            </div>
+    </div>
+    </div>
+
+  
+</section> -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css">

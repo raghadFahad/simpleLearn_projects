@@ -1,0 +1,58 @@
+  <section class="departments pb-0 bg-light">
+    <div class="container">
+
+      <div class="row align-items-start padding-container">
+        <div class="col-lg-5 d-none d-lg-block">
+            <img class="img-fluid img" src="assets/images/about-us.png" alt="doctor" height="1500">
+        </div>
+        <div class="login-form border p-5 contactForm">
+            <!-- <div class="text-center heading">
+              <h2 class="mb-2">Create your account</h2>
+              <p class="lead">Already have an account? <a routerLink="/sign-in"> Login now</a></p>
+            </div><br> -->
+            <div *ngIf="(this.successedSend && this.submitted)">
+              <span class="text" style="color: green;">
+              -  Password Changed Succssfuly
+               </span>
+              
+            </div>
+            <form action="#"  [formGroup]="contactUsForm" (ngSubmit)="onSubmit()">
+              <div class="form-group mb-4">
+                <label for="#">Enter your name</label>
+                <input type="text" class="form-control" placeholder="Enter Email Address" formControlName="name">
+                <!--Name validation-->
+                <span class="text-danger"
+                *ngIf="(contactUsForm.get('name').touched || submitted) && contactUsForm.get('name').errors?.required">
+                - Name is required
+                 </span>
+              </div>
+              <div class="form-group mb-4">
+                <label for="#">Enter email</label>
+                <input type="email" class="form-control" placeholder="Enter Password" formControlName="email"> 
+                 <!--Email validation-->
+                 <span class="text-danger"
+                 *ngIf="(contactUsForm.get('email').touched || submitted) && contactUsForm.get('email').errors?.required">
+                 - Email is required<br>
+             </span>
+             <span class="text-danger"
+                 *ngIf="contactUsForm.get('email').touched && contactUsForm.get('email').errors?.email">
+                 - Enter a valid email address<br>
+             </span>
+              </div>
+              <div class="form-group mb-4">
+                <label for="#">Enter your message</label>
+                <textarea type="textarea" class="form-control" rows="4" cols="50" formControlName="text"> </textarea>
+                <!--Name validation-->
+                <span class="text-danger"
+                *ngIf="(contactUsForm.get('text').touched || submitted) && contactUsForm.get('text').errors?.required">
+                - Name is required
+                 </span>
+              </div>
+              <button class="btn btn-light  px-1 btn-block cintactBtn">send</button>
+            </form>
+          </div>
+      </div>
+    </div>
+  </section>
+  
+ 
