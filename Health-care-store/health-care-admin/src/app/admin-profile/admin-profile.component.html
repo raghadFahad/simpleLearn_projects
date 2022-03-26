@@ -1,0 +1,104 @@
+
+<section class="user-dashboard page-wrapper">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-md-5 col-sm-12 col-lg-3">
+          <div class="nav flex-column nav-pills">
+              <a class="nav-link" routerLink="/orders" >Orders</a>
+          </div>
+          <div class="nav flex-column nav-pills">
+            <a class="nav-link" routerLink="/add-products" >Add Products</a>
+        </div>
+        <div class="nav flex-column nav-pills">
+          <a class="nav-link"routerLink="/view-product" >View Products</a>
+      </div>
+          <div class="nav flex-column nav-pills">
+              <a class="nav-link active" routerLink="/admin-profile" >Profile Details</a>
+          </div>
+          <div class="nav flex-column nav-pills">
+              <a class="nav-link"routerLink="/user-comments" >Users comments</a>
+          </div>
+          <div class="nav flex-column nav-pills">
+              <a class="nav-link"routerLink="/log-out" >Log Out</a>
+          </div>
+      </div>
+        <div class="col-12 col-md-7 col-sm-12 col-lg-9">
+        
+            
+            <div class="tab-pane fade show active" id="settings" role="tabpanel" >
+              <div class="acccount-settings">
+                <h4 class="mb-4">Account information</h4>
+                <div>
+                <form action="#" >
+                  <div class="form-group mb-4">
+                    <label >Username</label>
+                    <input type="text" class="form-control"  [value]="this.userInfo['0']['username']"  disabled/>
+                  </div>
+                  <div class="form-group mb-4">
+                    <label >Email address </label>
+                    <input type="text" class="form-control" [value]="this.userInfo['0']['email']" disabled/>
+                  </div>
+  
+                </form>
+              </div>
+                <div>
+                  <div *ngIf="(this.changeSucess && this.submitted)">
+                    <span class="text" style="color: green;">
+                    -  Password Changed Succssfuly
+                     </span>
+                  </div>
+                  <div *ngIf="(!this.changeSucess && this.submitted)">
+                    <span class="text" style="color: red;">
+                    -  Check you write Current Password
+                     </span>
+                  </div>
+                <form action="#" class="mt-5" [formGroup]="changPasswordForm" (ngSubmit)="changePassword()">
+                  <h4>Password change</h4>
+                  <div class="form-group">
+                    <label >Current password </label>
+                    <input type="password" class="form-control" placeholder="" formControlName="oldPassword">
+                    <span class="text-danger"
+                    *ngIf="(changPasswordForm.get('oldPassword').touched || submitted) && changPasswordForm.get('oldPassword').errors?.required">
+                    -  Current password is required
+                     </span>
+                    
+                  </div>
+                  <div class="form-group">
+                    <label >New password</label>
+                    <input type="password" class="form-control" placeholder="" formControlName="newPassword">
+                    <span class="text-danger"
+                    *ngIf="(changPasswordForm.get('newPassword').touched || submitted) && changPasswordForm.get('newPassword').errors?.required">
+                    - Password is required
+                    </span>
+                    <span class="text-danger"
+                        *ngIf="changPasswordForm.get('newPassword').touched && changPasswordForm.get('newPassword').errors?.invalidPassword ">
+                        <ul>
+                          <li>Password should have minimum 8 characters.</li>
+                          <li>At least 1 uppercase letter 1 lowercase letter and 1 number</li>
+                        </ul>  
+                    </span>
+                  </div>
+                  <div class="form-group">
+                    <label >Confirm password</label>
+                    <input type="password" class="form-control" placeholder="" formControlName="conNewPassword">
+                    <span class="text-danger"
+                  *ngIf="(changPasswordForm.get('conNewPassword').touched || submitted)&& changPasswordForm.get('conNewPassword').errors?.required">
+                  - Confirm Password is required <br>
+                  </span>
+                  <span class="text-danger"
+                      *ngIf="changPasswordForm.get('conNewPassword').touched && changPasswordForm.get('conNewPassword').hasError('matching')">
+                      - Passwords does not match
+                  </span>
+                  </div>
+                  <button href="#" class="btn savebtn">Save Changes</button>
+                </form>
+  
+  
+              </div>
+              </div>
+            </div>
+         
+        </div>
+      </div>
+    </div>
+  </section>

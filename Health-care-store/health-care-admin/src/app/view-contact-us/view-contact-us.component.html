@@ -1,0 +1,55 @@
+
+  <section class="user-dashboard page-wrapper">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-md-5 col-sm-12 col-lg-3">
+          <div class="nav flex-column nav-pills">
+              <a class="nav-link" routerLink="/orders" >Orders</a>
+          </div>
+          <div class="nav flex-column nav-pills">
+            <a class="nav-link" routerLink="/add-products" >Add Products</a>
+        </div>
+        <div class="nav flex-column nav-pills">
+          <a class="nav-link"routerLink="/view-product" >View Products</a>
+      </div>
+          <div class="nav flex-column nav-pills">
+              <a class="nav-link " routerLink="/admin-profile" >Profile Details</a>
+          </div>
+          <div class="nav flex-column nav-pills">
+              <a class="nav-link active"routerLink="/user-comments" >Users comments</a>
+          </div>
+          <div class="nav flex-column nav-pills">
+              <a class="nav-link"routerLink="/log-out" >Log Out</a>
+          </div>
+      </div>
+        <div class="col-12 col-md-7 col-sm-12 col-lg-9">
+            <h4 class="mb-4">Your order</h4>
+
+            
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Message</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <ng-template ngFor let-item [ngForOf]="this.userInfo " let-i="index">
+                <tbody>
+                    <tr>
+                      <th scope="row">{{this.userInfo[i]['idCU']}}</th>
+                      <td>{{this.userInfo[i]['name']}} </td>
+                      <td>{{this.userInfo[i]['email']}}</td>
+                      <td>{{this.userInfo[i]['text']}}</td>
+                    <td><a href="mailto:{{this.userInfo[i]['email']}}" class="btn btn-dark btn-small">Replay</a></td>
+                   </tr>
+                  </tbody>
+              </ng-template>
+           
+         </table> 
+        </div>
+     </div>
+     </div>
+     </section>

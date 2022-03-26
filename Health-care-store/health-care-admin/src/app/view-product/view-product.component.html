@@ -1,0 +1,70 @@
+
+  <section class="user-dashboard page-wrapper">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-md-5 col-sm-12 col-lg-3">
+            <div class="nav flex-column nav-pills">
+                <a class="nav-link" routerLink="/orders" >Orders</a>
+            </div>
+            <div class="nav flex-column nav-pills">
+              <a class="nav-link" routerLink="/add-products" >Add Products</a>
+          </div>
+          <div class="nav flex-column nav-pills">
+            <a class="nav-link"routerLink="/view-product" >View Products</a>
+        </div>
+            <div class="nav flex-column nav-pills">
+                <a class="nav-link active" routerLink="/admin-profile" >Profile Details</a>
+            </div>
+            <div class="nav flex-column nav-pills">
+                <a class="nav-link"routerLink="/user-comments" >Users comments</a>
+            </div>
+            <div class="nav flex-column nav-pills">
+                <a class="nav-link"routerLink="/log-out" >Log Out</a>
+            </div>
+        </div>
+        <div class="col-12 col-md-7 col-sm-12 col-lg-9">
+            <h4 class="mb-4">Products</h4>
+
+            <div *ngIf="(this.changeSucess && this.submmited)">
+                <span class="text" style="color: green;">
+                   - Products deleted successfully
+                 </span>
+              </div>
+              <div *ngIf="(!this.changeSucess) && this.submmited">
+                <span class="text" style="color: red;">
+                -  Products doesn't deleted successfully
+                 </span>
+              </div>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Type</th>
+                <th scope="col">Price</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <ng-template ngFor let-item [ngForOf]="this.productsInfo " let-i="index">
+                <tbody>
+                    <tr>
+                      <th scope="row">{{this.productsInfo[i]['product_n']}}</th>
+                      <td>{{this.productsInfo[i]['product_q']}} </td>
+                      <td>{{this.productsInfo[i]['product_t']}}</td>
+                      <td>{{this.productsInfo[i]['product_p']}}</td>
+
+                    <td>
+                        <form (ngSubmit)="deletProduct(this.productsInfo[i]['product_n'])">
+                        <button class="btn btn-dark btn-small">Delete</button>
+                         </form>
+                        </td>
+                    </tr>
+                  </tbody>
+              </ng-template>
+
+           
+         </table> 
+        </div>
+     </div>
+     </div>
+     </section>

@@ -1,0 +1,18 @@
+.logo{
+    height: 100px;
+    width: 130px;
+    margin: 10px;
+}
+
+.icone-container{
+    padding-left: 2em;
+}
+.icone{
+    margin-right: -5em;
+    margin-left: 3em;
+    height: 3em;
+    width: 3em;
+}
+.menu-padding{
+width:50%
+}

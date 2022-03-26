@@ -1,0 +1,115 @@
+
+<section class="user-dashboard page-wrapper">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-md-5 col-sm-12 col-lg-3">
+          <div class="nav flex-column nav-pills">
+              <a class="nav-link" routerLink="/orders" >Orders</a>
+          </div>
+          <div class="nav flex-column nav-pills">
+            <a class="nav-link" routerLink="/add-products" >Add Products</a>
+        </div>
+        <div class="nav flex-column nav-pills">
+          <a class="nav-link"routerLink="/view-product" >View Products</a>
+      </div>
+          <div class="nav flex-column nav-pills">
+              <a class="nav-link active" routerLink="/admin-profile" >Profile Details</a>
+          </div>
+          <div class="nav flex-column nav-pills">
+              <a class="nav-link"routerLink="/user-comments" >Users comments</a>
+          </div>
+          <div class="nav flex-column nav-pills">
+              <a class="nav-link"routerLink="/log-out" >Log Out</a>
+          </div>
+      </div>
+        <div class="col-12 col-md-7 col-sm-12 col-lg-9">
+            <div class="tab-pane fade show active" id="settings" role="tabpanel" >
+              <div class="acccount-settings">
+                <div>
+                  <div *ngIf="(this.changeSucess && this.submitted)">
+                    <span class="text" style="color: green;">
+                    -  Product added Succssfuly
+                     </span>
+                  </div>
+                  <div *ngIf="(!this.changeSucess && this.submitted)">
+                    <span class="text" style="color: red;">
+                    -  Product dose not added Succssfuly
+                     </span>
+                  </div>
+                <form action="#" class="mt-5" [formGroup]="this.products" (ngSubmit)="addProducts()">
+                  <h4>Add Product</h4>
+                <!--Name-->
+                  <div class="form-group">
+                    <label >Products Name </label>
+                    <input type="text" class="form-control" placeholder="Prodct name" formControlName="Pname">
+                    <span class="text-danger"
+                    *ngIf="(products.get('Pname').touched || submitted) && products.get('Pname').errors?.required">
+                    - Products Name is required
+                     </span>
+                  </div>
+
+                  <!--Quantity-->
+                  <div class="form-group">
+                    <label >Products quantity </label>
+                    <input type="number" class="form-control" placeholder="" formControlName="Pquantity">
+                    <span class="text-danger"
+                    *ngIf="(products.get('Pquantity').touched || submitted) && products.get('Pquantity').errors?.required">
+                    - Products Quantity is required
+                     </span>
+                  </div>
+
+                  <!--Type-->
+                  <label >Products Type </label>
+                  <select class="custom-select mb-3"
+                        (change)="changeType($event)"
+                        formControlName="Ptype" >
+                        <option value="skinProductse">Skin Products</option>
+                        <option value="organicProductse">Organic Productse</option>
+                        <option value="hairProductse">Hair Products</option>
+                  </select>
+                <!-- error block -->
+                <div class="invalid-feedback" *ngIf="submitted && typeName?.invalid">
+                    - Please provide product type
+                </div>
+                <!--Price-->
+                <label>Product Price</label>
+                  <div class="form-group">
+                    <input type="number" class="form-control" placeholder="" formControlName="Pprice">
+                    <span class="text-danger"
+                    *ngIf="(products.get('Pprice').touched || submitted) && products.get('Pprice').errors?.required">
+                    - Products price is required
+                    </span>
+                    <span class="text-danger"
+                    *ngIf="(products.get('Pprice').touched || submitted) && products.get('Pprice').errors?.min">
+                    - Products price Most be over 1 SR
+                    </span>
+                    <span class="text-danger"
+                    *ngIf="(products.get('Pprice').touched || submitted) && products.get('Pprice').errors?.maxLength">
+                    - Products price must be contain of 3 length
+                    </span>
+                  </div>
+                  <!--image-->
+                  <label>Product Imag</label>
+                  <!-- <div class="custom-file">
+                  <form action="/api/upload" method="post" enctype="multipart/form-data"> -->
+                      <!-- <input (change)="onChange($event)"  type="file"  class="custom-file-input" formControlName="Pimage"> -->
+                    <!-- </form>
+                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                </div> -->
+                <div class="text-center">
+                  <input class="form-control" type="file" 
+                          (change)=" selecteImage($event)" formControlName="Pimage" #fileInput>
+              
+              </div>
+                  <button href="#" class="btn savebtn">Add Products</button>
+                </form>
+  
+  
+              </div>
+              </div>
+            </div>
+         
+        </div>
+      </div>
+    </div>
+  </section>
